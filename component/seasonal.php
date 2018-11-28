@@ -107,10 +107,6 @@
       var fireworks_set = 0;
     }
 
-    console.log('Setting snow: ' + snow_set)
-    console.log('Setting music: ' + music_set)
-    console.log('Setting fireworks: ' + fireworks_set)
-
     jQuery.ajax({
       type: "POST",
       url: "/administrator/components/com_seasonal/ajax.php",
