@@ -8,7 +8,7 @@
 	<authorEmail>charlesgarne98@gmail.com</authorEmail>
 	<authorUrl>http://charlesgarner.uk</authorUrl>
 	<!--  The version string is recorded in the components table -->
-	<version>2.0.0</version>
+	<version>2.1.0</version>
 	<!-- The description is optional and defaults to the name -->
 	<description>Add seasonal snow, music and fireworks to your joomla site</description>
 
