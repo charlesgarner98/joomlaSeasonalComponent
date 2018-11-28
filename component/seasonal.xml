@@ -29,6 +29,12 @@
 		</schemas>
 	</update>
 
+	<!-- UPDATESERVER DEFINITION -->
+	<updateservers>
+		<!-- Note: No spaces or linebreaks allowed between the server tags -->
+		<server type="extension" priority="1" name="Seasonal Component Update Site">https://github.com/charlesgarner98/joomlaSeasonalComponent/seasonal-update.xml</server>
+	</updateservers>
+
 	<!-- Site Main File Copy Section -->
 	<!-- Note the folder attribute: This attribute describes the folder
 		to copy FROM in the package to install therefore files copied
