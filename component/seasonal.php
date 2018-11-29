@@ -2,11 +2,12 @@
 
   defined('_JEXEC') or die('Restricted access');
 
-  if(isset($_POST['snow']) && isset($_POST['music']) && isset($_POST['fireworks'])){
+  if(isset($_POST['snow']) && isset($_POST['music']) && isset($_POST['fireworks']) && isset($_POST['presents'])){
 
     $snow = $_POST['snow'];
     $music = $_POST['music'];
     $fireworks = $_POST['fireworks'];
+    $presents = $_POST['presents'];
 
     echo 'success';
   }
@@ -36,6 +37,11 @@
   $query = "SELECT published FROM #__seasonal WHERE id = 3;";
   $db->setQuery($query);
   $fireworks= $db->loadResult();
+
+  //Get value for presents
+  $query = "SELECT published FROM #__seasonal WHERE id = 4;";
+  $db->setQuery($query);
+  $presents= $db->loadResult();
 ?>
 <form action="/administrator/index.php?option=com_seasonal" id="component-form" method="post" name="adminForm" autocomplete="off" class="form-validate form-horizontal">
   <div class="control-group">
@@ -85,6 +91,24 @@
       </fieldset>
     </div>
   </div>
+
+  <div class="control-group">
+    <div class="control-label">
+      <label id="jform_presents-lbl" for="jform_seasonal" class="hasPopover" title data-content="Enable or disable presents on the site." data-original-title="Enable Presents">
+        Enable Presents
+      </label>
+    </div>
+    <div class="controls">
+      <fieldset id="jform_presents" class="radio btn-group btn-group-yesno">
+        <input type="radio" id="jform_presents0" value="1" name="jform[presents]">
+        <label for="jform_presents0" class="btn <?php if($fireworks == 1) echo 'btn-success'; ?>">Yes</label>
+        <input type="radio" id="jform_presents1" value="0" name="jform[presents]">
+        <label for="jform_presents1" class="btn <?php if($fireworks == 0) echo 'btn-danger'; ?>">No</label>
+      </fieldset>
+    </div>
+  </div>
+
+
 </form>
 <div id="update"></div>
 
@@ -106,11 +130,16 @@
     } else {
       var fireworks_set = 0;
     }
+    if(jQuery('#jform_presents label').hasClass('btn-success')){
+      var presents_set = 1;
+    } else {
+      var presents_set = 0;
+    }
 
     jQuery.ajax({
       type: "POST",
       url: "/administrator/components/com_seasonal/ajax.php",
-      data: { 'snow' : snow_set, 'music' : music_set, 'fireworks' : fireworks_set},
+      data: { 'snow' : snow_set, 'music' : music_set, 'fireworks' : fireworks_set, 'presents' : presents_set},
     }).done(function(result){
       if(result == 'success'){
         window.location.href = "/administrator";

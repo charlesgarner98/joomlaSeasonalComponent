@@ -24,11 +24,12 @@ if (!defined('_JDEFINES'))
 require_once JPATH_BASE . '/includes/framework.php';
 
 
-if(isset($_POST['snow']) && isset($_POST['music']) && isset($_POST['fireworks'])){
+if(isset($_POST['snow']) && isset($_POST['music']) && isset($_POST['fireworks']) && isset($_POST['presents'])){
 
   $snow = $_POST['snow'];
   $music = $_POST['music'];
   $fireworks = $_POST['fireworks'];
+  $presents = $_POST['presents'];
 
   $db = JFactory::getDbo();
   $query = $db->getQuery(true);
@@ -57,7 +58,15 @@ if(isset($_POST['snow']) && isset($_POST['music']) && isset($_POST['fireworks'])
     $result3= 'success';
   }
 
-  if($result1 == 'success' && $result2 == 'success' && $result3 == 'success') {
+  //Presents
+  $query = "UPDATE #__seasonal SET published=". $presents ." WHERE id=4;";
+  $db->setQuery($query);
+  $result = $db->query();
+  if($result){
+    $result4= 'success';
+  }
+
+  if($result1 == 'success' && $result2 == 'success' && $result3 == 'success'  && $result4 == 'success') {
     echo 'success';
   }
 
